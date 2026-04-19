@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vênus — Leitura de cartas ciganas</title>
+<meta name="description" content="Sessão ao vivo de leitura de cartas ciganas Lenormand — investigativa, terapêutica e sem promessas. Online e presencial em Curitiba." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --tinta:  #2A1F0A;
+  --ambar:  #6B4E1A;
+  --ouro:   #B8943F;
+  --palha:  #D4B878;
+  --linho:  #F0E2C0;
+  --creme:  #F5EDD8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-weight: 300;
+  color: var(--tinta);
+  background: var(--creme);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img, svg { display: block; max-width: 100%; }
+
+/* ----- NAV ----- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(42, 31, 10, 0.72);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid rgba(184, 148, 63, 0.18);
+}
+.nav__brand {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--creme);
+  letter-spacing: 0.04em;
+}
+.nav__cta {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta);
+  background: var(--palha);
+  padding: 11px 20px;
+  border-radius: 999px;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.nav__cta:hover { background: var(--creme); transform: translateY(-1px); }
+
+@media (max-width: 560px) {
+  .nav { padding: 14px 20px; }
+  .nav__brand { font-size: 20px; }
+  .nav__cta { font-size: 11px; padding: 9px 14px; }
+}
+
+/* ----- LAYOUT ----- */
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+.wrap--narrow { max-width: 860px; }
+
+section { padding: 140px 0; position: relative; }
+@media (max-width: 720px) { section { padding: 96px 0; } }
+
+.section--linho { background: var(--linho); }
+.section--tinta { background: var(--tinta); color: var(--creme); }
+
+.eyebrow {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ouro);
+}
+
+.kicker {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--ambar);
+  letter-spacing: 0.01em;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 24px 0;
+  color: var(--ouro);
+  font-size: 14px;
+}
+.divider::before, .divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+}
+
+.rule {
+  width: 48px;
+  height: 1px;
+  background: var(--ouro);
+  border: 0;
+  margin: 0 0 32px;
+}
+.rule--center { margin-left: auto; margin-right: auto; }
+
+/* ----- HERO ----- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 180px 0 80px;
+  background:
+    radial-gradient(1200px 600px at 85% 10%, rgba(184, 148, 63, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 10% 90%, rgba(107, 78, 26, 0.22), transparent 55%),
+    var(--tinta);
+  color: var(--creme);
+  overflow: hidden;
+}
+.hero__inner { max-width: 1060px; }
+.hero__eyebrow { color: var(--palha); }
+.hero h1 {
+  margin-top: 28px;
+  font-size: clamp(42px, 7.2vw, 96px);
+  font-weight: 500;
+  color: var(--creme);
+  letter-spacing: -0.02em;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--palha);
+}
+.hero__sub {
+  margin-top: 36px;
+  max-width: 620px;
+  font-size: clamp(17px, 1.6vw, 20px);
+  color: rgba(245, 237, 216, 0.82);
+  font-weight: 300;
+  line-height: 1.6;
+}
+.hero__actions {
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 17px 34px;
+  border-radius: 999px;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid transparent;
+}
+.btn--primary {
+  background: var(--palha);
+  color: var(--tinta);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 18px 40px -22px rgba(184, 148, 63, 0.65);
+}
+.btn--primary:hover { transform: translateY(-2px); background: var(--creme); }
+.btn--ghost {
+  background: transparent;
+  color: var(--palha);
+  border-color: rgba(212, 184, 120, 0.45);
+}
+.btn--ghost:hover { background: rgba(212, 184, 120, 0.08); color: var(--creme); }
+
+.hero__meta {
+  margin-top: 96px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: rgba(212, 184, 120, 0.78);
+}
+.hero__meta .sep {
+  display: inline-block;
+  margin: 0 10px;
+  color: var(--ouro);
+  font-size: 10px;
+  vertical-align: 2px;
+}
+
+/* ----- SECTION HEADS ----- */
+.section-head { margin-bottom: 64px; max-width: 760px; }
+.section-head h2 {
+  margin-top: 20px;
+  font-size: clamp(32px, 4.4vw, 54px);
+  letter-spacing: -0.01em;
+}
+.section-head p {
+  margin-top: 24px;
+  font-size: 18px;
+  color: var(--ambar);
+  max-width: 640px;
+}
+
+/* ----- SECTION 2 ----- */
+.intro__body p {
+  font-size: clamp(19px, 1.7vw, 22px);
+  line-height: 1.6;
+  color: var(--tinta);
+  max-width: 740px;
+}
+.intro__body p + p { margin-top: 24px; }
+
+.dual {
+  margin-top: 88px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+@media (max-width: 720px) {
+  .dual { grid-template-columns: 1fr; gap: 48px; }
+}
+.dual__col h3 {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 26px;
+  color: var(--ouro);
+  margin-bottom: 20px;
+}
+.dual__col--alt h3 { color: var(--tinta); }
+.dual__col ul {
+  list-style: none;
+  border-top: 1px solid rgba(107, 78, 26, 0.22);
+}
+.dual__col li {
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(107, 78, 26, 0.22);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--tinta);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.dual__col li::before {
+  content: "—";
+  color: var(--ouro);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.dual__col--neg li { color: var(--ambar); }
+
+/* ----- SECTION 3 (para quem é) ----- */
+.forwhom {
+  background: var(--creme);
+}
+.forwhom__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: rgba(107, 78, 26, 0.18);
+  margin-top: 40px;
+  border: 1px solid rgba(107, 78, 26, 0.18);
+}
+@media (max-width: 720px) {
+  .forwhom__grid { grid-template-columns: 1fr; }
+}
+.forwhom__item {
+  background: var(--creme);
+  padding: 44px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 220px;
+  transition: background 0.4s ease;
+}
+.forwhom__item:hover { background: var(--linho); }
+.forwhom__num {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 32px;
+  color: var(--ouro);
+  font-weight: 400;
+}
+.forwhom__item p {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--tinta);
+  max-width: 42ch;
+}
+
+/* ----- SECTION 4 (como funciona) ----- */
+.steps { margin-top: 24px; }
+.step {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 48px;
+  padding: 44px 0;
+  border-top: 1px solid rgba(107, 78, 26, 0.28);
+  align-items: start;
+}
+.step:last-child { border-bottom: 1px solid rgba(107, 78, 26, 0.28); }
+.step__num {
+  font-family: "Playfair Display", serif;
+  font-size: 56px;
+  font-weight: 400;
+  color: var(--ouro);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.step__body h3 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--tinta);
+}
+.step__body p {
+  font-size: 17px;
+  color: var(--ambar);
+  line-height: 1.6;
+  max-width: 64ch;
+}
+@media (max-width: 720px) {
+  .step { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }
+  .step__num { font-size: 42px; }
+}
+
+/* ----- SECTION 5 (about) ----- */
+.about {
+  background: var(--linho);
+}
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 96px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .about__grid { grid-template-columns: 1fr; gap: 56px; }
+}
+.about__photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  max-width: 460px;
+}
+.about__photo-inner {
+  width: 100%;
+  height: 100%;
+  clip-path: url(#venusMask);
+  -webkit-clip-path: url(#venusMask);
+  background: linear-gradient(160deg, var(--palha) 0%, var(--ambar) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.about__photo-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("venus.jpg");
+  background-size: cover;
+  background-position: center 22%;
+  background-repeat: no-repeat;
+}
+.about__photo-ornament {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 72px;
+  height: 72px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.about__name {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(48px, 6vw, 76px);
+  font-weight: 500;
+  color: var(--tinta);
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+.about__role {
+  margin-top: 16px;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ouro);
+  font-weight: 500;
+}
+.about__role .sep {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 10px;
+  vertical-align: 2px;
+}
+.about__text {
+  margin-top: 36px;
+  font-size: clamp(17px, 1.5vw, 19px);
+  color: var(--tinta);
+  line-height: 1.7;
+  max-width: 58ch;
+}
+.about__text p + p { margin-top: 20px; }
+
+/* ----- SECTION 6 (final CTA) ----- */
+.final {
+  background:
+    radial-gradient(900px 500px at 80% 20%, rgba(184, 148, 63, 0.14), transparent 55%),
+    var(--tinta);
+  color: var(--creme);
+  text-align: center;
+}
+.final__title {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(44px, 6.5vw, 86px);
+  color: var(--creme);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  max-width: 16ch;
+  margin: 0 auto;
+}
+.final__text {
+  margin: 40px auto 0;
+  max-width: 580px;
+  font-size: clamp(17px, 1.6vw, 19px);
+  color: rgba(245, 237, 216, 0.78);
+  line-height: 1.65;
+}
+.final__actions { margin-top: 48px; }
+.final__note {
+  margin-top: 32px;
+  font-size: 14px;
+  color: rgba(212, 184, 120, 0.72);
+}
+.final__note a {
+  color: var(--palha);
+  border-bottom: 1px solid rgba(212, 184, 120, 0.45);
+  padding-bottom: 1px;
+  transition: color 0.25s, border-color 0.25s;
+}
+.final__note a:hover { color: var(--creme); border-color: var(--creme); }
+
+/* ----- FOOTER ----- */
+footer {
+  background: var(--tinta);
+  color: rgba(212, 184, 120, 0.6);
+  padding: 36px 0 48px;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  border-top: 1px solid rgba(184, 148, 63, 0.14);
+}
+footer .sep {
+  display: inline-block;
+  margin: 0 10px;
+  color: var(--ouro);
+  font-size: 10px;
+  vertical-align: 2px;
+}
+
+/* ----- FADE-UP ----- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+.reveal[data-delay="1"] { transition-delay: 0.1s; }
+.reveal[data-delay="2"] { transition-delay: 0.2s; }
+.reveal[data-delay="3"] { transition-delay: 0.3s; }
+.reveal[data-delay="4"] { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- Máscara orgânica SVG (definida uma vez, reaproveitada) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- clipPath em unidades relativas (0-1) para escalar com o container -->
+    <clipPath id="venusMask" clipPathUnits="objectBoundingBox">
+      <path d="
+        M 0.52 0.015
+        C 0.71 0.01, 0.86 0.08, 0.93 0.24
+        C 0.99 0.39, 0.97 0.55, 0.95 0.69
+        C 0.93 0.82, 0.86 0.93, 0.71 0.97
+        C 0.56 1.0, 0.38 0.995, 0.24 0.95
+        C 0.10 0.90, 0.03 0.77, 0.02 0.60
+        C 0.01 0.45, 0.04 0.30, 0.12 0.18
+        C 0.21 0.06, 0.35 0.02, 0.52 0.015
+        Z" />
+    </clipPath>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav class="nav" aria-label="Navegação principal">
+  <a class="nav__brand" href="#top">Vênus</a>
+  <a class="nav__cta" href="https://wa.me/5541888931323" target="_blank" rel="noopener">Agendar leitura</a>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="wrap hero__inner">
+    <span class="eyebrow hero__eyebrow reveal">Leitura de cartas ciganas</span>
+    <h1 class="reveal" data-delay="1">
+      Às vezes o que falta não é uma resposta.<br />
+      <em>É a pergunta certa.</em>
+    </h1>
+    <p class="hero__sub reveal" data-delay="2">
+      Sessão ao vivo de leitura de cartas ciganas — investigativa, terapêutica e sem promessas. Para quem quer clareza, não certezas.
+    </p>
+    <div class="hero__actions reveal" data-delay="3">
+      <a class="btn btn--primary" href="https://wa.me/5541888931323" target="_blank" rel="noopener">Agendar uma leitura</a>
+      <a class="btn btn--ghost" href="#como-funciona">Como funciona</a>
+    </div>
+    <div class="hero__meta reveal" data-delay="4">
+      Baralho cigano Lenormand
+      <span class="sep">✦</span>
+      Online e presencial
+      <span class="sep">✦</span>
+      Curitiba
+      <span class="sep">✦</span>
+      R$ 180 por sessão
+    </div>
+  </div>
+</header>
+
+<!-- SECTION 2 — O que é -->
+<section class="section--linho">
+  <div class="wrap wrap--narrow">
+    <div class="section-head reveal">
+      <hr class="rule" />
+      <span class="eyebrow">Sobre o trabalho</span>
+      <h2>Uma leitura honesta começa por aqui.</h2>
+    </div>
+    <div class="intro__body reveal" data-delay="1">
+      <p>O baralho cigano tem séculos de história. Não uso as cartas para prever o futuro, abrir caminhos ou fazer promessas que nenhum ser humano pode cumprir.</p>
+      <p>Uso as cartas como ferramenta — simbólica, intuitiva e investigativa — para ajudar você a olhar para o que está acontecendo na sua vida agora. O que está bloqueado, o que está se movendo, o que você ainda não conseguiu nomear.</p>
+    </div>
+
+    <div class="dual">
+      <div class="dual__col dual__col--neg reveal" data-delay="2">
+        <h3>Esta leitura não é</h3>
+        <ul>
+          <li>Adivinhação ou previsão do futuro</li>
+          <li>Abertura de caminhos ou amarração</li>
+          <li>Substituição de terapia ou acompanhamento médico</li>
+          <li>Uma resposta pronta para o que você deve fazer</li>
+        </ul>
+      </div>
+      <div class="dual__col dual__col--alt reveal" data-delay="3">
+        <h3>Esta leitura é</h3>
+        <ul>
+          <li>Um espaço de escuta guiado pelas cartas</li>
+          <li>Uma forma de organizar o que parece confuso</li>
+          <li>Uma lente diferente para o que você já sabe</li>
+          <li>Um encontro ao vivo, com presença e sem julgamento</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 — Para quem -->
+<section class="forwhom">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <hr class="rule" />
+      <span class="eyebrow">Para quem é</span>
+      <h2><em style="font-style:italic; color:var(--ouro)">Talvez</em> seja para você se…</h2>
+    </div>
+
+    <div class="forwhom__grid">
+      <div class="forwhom__item reveal" data-delay="1">
+        <span class="forwhom__num">01</span>
+        <p>Você está num momento de transição e sente que falta clareza sobre o próximo passo.</p>
+      </div>
+      <div class="forwhom__item reveal" data-delay="2">
+        <span class="forwhom__num">02</span>
+        <p>Você tem uma decisão pela frente e quer entender o que está sentindo de verdade.</p>
+      </div>
+      <div class="forwhom__item reveal" data-delay="1">
+        <span class="forwhom__num">03</span>
+        <p>Você se conhece bem, mas sente que algo ainda não ficou claro.</p>
+      </div>
+      <div class="forwhom__item reveal" data-delay="2">
+        <span class="forwhom__num">04</span>
+        <p>Você tem curiosidade sobre as cartas, mas não quer promessas — quer algo honesto.</p>
+      </div>
+      <div class="forwhom__item reveal" data-delay="1" style="grid-column: 1 / -1">
+        <span class="forwhom__num">05</span>
+        <p>Você está bem, mas sente que poderia estar mais inteiro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 — Como funciona -->
+<section id="como-funciona" class="section--linho">
+  <div class="wrap wrap--narrow">
+    <div class="section-head reveal">
+      <hr class="rule" />
+      <span class="eyebrow">Como funciona</span>
+      <h2>Como é uma sessão</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step__num">01</div>
+        <div class="step__body">
+          <h3>Você agenda pelo WhatsApp</h3>
+          <p>Escolhe o horário que funciona. A sessão acontece ao vivo por vídeo, de onde você estiver, ou presencialmente em Curitiba, na Rua Dr. Faivre, Centro.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step__num">02</div>
+        <div class="step__body">
+          <h3>Você chega com uma questão — ou sem nenhuma</h3>
+          <p>Pode ser uma situação, uma área da vida, uma dúvida ou simplesmente a vontade de olhar para o momento atual. Não precisa ter uma pergunta formulada.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step__num">03</div>
+        <div class="step__body">
+          <h3>As cartas são lidas em tempo real</h3>
+          <p>A leitura é dialógica — você participa, comenta, questiona. Não é um monólogo, é uma conversa guiada pelas cartas.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step__num">04</div>
+        <div class="step__body">
+          <h3>Você sai com mais clareza do que entrou</h3>
+          <p>Não necessariamente com respostas — às vezes com perguntas melhores. A duração varia conforme a leitura. Não existe pressa para encerrar quando ainda há algo a explorar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 — About -->
+<section class="about">
+  <div class="wrap">
+    <div class="about__grid">
+      <div class="about__photo reveal">
+        <div class="about__photo-inner" role="img" aria-label="Retrato da Vênus"></div>
+        <svg class="about__photo-ornament" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+          <path d="M36 4 L39 33 L68 36 L39 39 L36 68 L33 39 L4 36 L33 33 Z" fill="#B8943F"/>
+        </svg>
+      </div>
+
+      <div class="about__text-wrap">
+        <span class="eyebrow reveal" data-delay="1">Sobre</span>
+        <h2 class="about__name reveal" data-delay="1">Vênus</h2>
+        <div class="about__role reveal" data-delay="2">
+          Leitora de cartas ciganas
+          <span class="sep">✦</span>
+          8 anos de prática
+        </div>
+        <div class="about__text reveal" data-delay="3">
+          <p>Meu nome é Vênus. Cheguei às cartas num momento em que eu precisava de clareza e não encontrava nas palavras. As respostas que eu queria não vieram — mas chegaram perguntas que eu ainda não havia feito, e que mudaram a forma como eu olhava para o que estava vivendo.</p>
+          <p>Desde então, trabalho com leitura do baralho cigano Lenormand como uma prática honesta — sem misticismos que prometem o que não podem entregar. O que ofereço em cada sessão é um espaço para olhar com mais cuidado para o que você está vivendo, usando as cartas como guia.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6 — CTA final -->
+<section class="final">
+  <div class="wrap wrap--narrow">
+    <h2 class="final__title reveal">Quando você estiver pronta.</h2>
+    <p class="final__text reveal" data-delay="1">
+      Não precisa ter uma grande questão. Não precisa ter certeza de que “vai funcionar”. Precisa só de um momento de atenção para si.
+    </p>
+    <div class="final__actions reveal" data-delay="2">
+      <a class="btn btn--primary" href="https://wa.me/5541888931323" target="_blank" rel="noopener">Agendar uma leitura</a>
+    </div>
+    <p class="final__note reveal" data-delay="3">
+      Dúvidas antes de agendar? <a href="https://wa.me/5541888931323" target="_blank" rel="noopener">Fale pelo WhatsApp.</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  © Vênus
+  <span class="sep">✦</span>
+  Leitura de cartas ciganas
+  <span class="sep">✦</span>
+  Curitiba, PR
+</footer>
+
+<script>
+(function () {
+  var els = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window)) {
+    els.forEach(function (el) { el.classList.add("is-visible"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
