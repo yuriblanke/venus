@@ -405,6 +405,17 @@ section { padding: 140px 0; position: relative; }
   width: 100%;
   max-width: 460px;
 }
+.about__photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(184, 148, 63, 0.12), transparent 40%),
+    radial-gradient(ellipse at 80% 20%, rgba(107, 78, 26, 0.08), transparent 50%),
+    var(--palha);
+  clip-path: url(#venusMask);
+  -webkit-clip-path: url(#venusMask);
+}
 .about__photo-inner {
   width: 100%;
   height: 100%;
@@ -580,14 +591,14 @@ footer .sep {
     <!-- clipPath em unidades relativas (0-1) para escalar com o container -->
     <clipPath id="venusMask" clipPathUnits="objectBoundingBox">
       <path d="
-        M 0.52 0.015
-        C 0.71 0.01, 0.86 0.08, 0.93 0.24
-        C 0.99 0.39, 0.97 0.55, 0.95 0.69
-        C 0.93 0.82, 0.86 0.93, 0.71 0.97
-        C 0.56 1.0, 0.38 0.995, 0.24 0.95
-        C 0.10 0.90, 0.03 0.77, 0.02 0.60
-        C 0.01 0.45, 0.04 0.30, 0.12 0.18
-        C 0.21 0.06, 0.35 0.02, 0.52 0.015
+        M 0.518 0
+        C 0.689 0, 0.824 0.059, 0.887 0.227
+        C 0.941 0.3845, 0.923 0.5525, 0.905 0.6995
+        C 0.887 0.836, 0.824 0.9515, 0.689 0.9935
+        C 0.554 1, 0.392 1, 0.266 0.9725
+        C 0.14 0.92, 0.077 0.7835, 0.068 0.605
+        C 0.059 0.4475, 0.086 0.29, 0.158 0.164
+        C 0.239 0.038, 0.365 0, 0.518 0
         Z" />
     </clipPath>
   </defs>
@@ -745,7 +756,7 @@ footer .sep {
   <div class="wrap">
     <div class="about__grid">
       <div class="about__photo reveal">
-        <img class="about__photo-inner" src="venus-foto.png" alt="Vênus, leitora de cartas ciganas Lenormand em Curitiba" width="460" height="575" loading="lazy" decoding="async" />
+        <img class="about__photo-inner" src="venus-foto.webp" alt="Vênus, leitora de cartas ciganas Lenormand em Curitiba" width="460" height="575" loading="lazy" decoding="async" />
         <svg class="about__photo-ornament" viewBox="0 0 72 72" fill="none" aria-hidden="true">
           <path d="M36 4 L39 33 L68 36 L39 39 L36 68 L33 39 L4 36 L33 33 Z" fill="#B8943F"/>
         </svg>
